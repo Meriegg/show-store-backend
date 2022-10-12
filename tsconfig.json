@@ -21,7 +21,12 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
-    "baseUrl": "."
+    "baseUrl": "./src",
+    "paths": {
+      "@rootDir/*": ["*"],
+      "@gql/*": ["graphql/*"],
+      "@db/*": ["db/*"]
+    }
   },
   "exclude": ["node_modules"],
   "include": ["./src/**/*.ts"]
