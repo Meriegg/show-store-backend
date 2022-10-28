@@ -1,11 +1,12 @@
-import Product from "../../../db/models/product";
+import Product from "../../db/models/product";
 import { ApolloError } from "apollo-server-express";
 
 interface CreateProductArgs {
   productName: string;
   price: number;
-  types: string[];
+  typesID: string[];
   images: string[];
+  imageAlignment: string;
 }
 
 const resolvers = {
@@ -38,6 +39,21 @@ const resolvers = {
       const savedProduct = await newProduct.save();
 
       return savedProduct;
+    },
+    deleteProduct: async (_: any, args: { productId: string }) => {
+      const deletedProduct = await Product.findByIdAndDelete(args.productId);
+
+      return deletedProduct;
+    },
+    updateProduct: async (
+      _: any,
+      { args }: { args: { productId: string; productData: CreateProductArgs } }
+    ) => {
+      const updatedProduct = await Product.findByIdAndUpdate(args.productId, {
+        ...args.productData,
+      });
+
+      return updatedProduct;
     },
   },
 };

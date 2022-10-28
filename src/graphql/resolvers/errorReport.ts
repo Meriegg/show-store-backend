@@ -1,4 +1,4 @@
-import ErrorReport from "../../../db/models/errorReport";
+import ErrorReport from "../../db/models/errorReport";
 import { ApolloError } from "apollo-server-express";
 
 interface GetReportArgs {
@@ -40,6 +40,11 @@ const resolvers = {
         });
 
       return savedReport;
+    },
+    deleteReport: async (_: any, args: { reportId: string }) => {
+      const deletedReport = await ErrorReport.findByIdAndDelete(args.reportId);
+
+      return deletedReport;
     },
   },
 };

@@ -14,5 +14,6 @@ export default gql`
 
   type Mutation {
     reportError(stringifiedError: String!): ErrorReport!
+    deleteReport(reportId: ID!): ErrorReport!
   }
 `;

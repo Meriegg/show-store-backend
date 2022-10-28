@@ -5,8 +5,9 @@ export default gql`
     _id: ID!
     productName: String!
     price: Float!
-    types: [String!]
+    typesID: [String!]
     images: [String!]
+    imageAlignment: String
   }
 
   type Query {
@@ -16,12 +17,19 @@ export default gql`
 
   type Mutation {
     createProduct(data: CreateProductInput!): Product!
+    deleteProduct(productId: ID!): Product!
+    updateProduct(args: UpdateProductInput!): Product!
   }
 
   input CreateProductInput {
     productName: String!
     price: Float!
-    types: [String!]!
+    typesID: [String!]!
     images: [String!]!
+  }
+
+  input UpdateProductInput {
+    productId: ID!
+    productData: CreateProductInput!
   }
 `;

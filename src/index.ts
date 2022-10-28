@@ -18,6 +18,12 @@ const main = async () => {
     typeDefs,
     resolvers,
     csrfPrevention: true,
+    context: ({ req, res }) => {
+      return {
+        req,
+        res,
+      };
+    },
   });
 
   await gqlServer.start();

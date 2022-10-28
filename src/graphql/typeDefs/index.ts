@@ -1,4 +1,7 @@
 import productSchema from "./product";
 import errorReportSchema from "./errorReport";
+import productTypeSchema from "./productType";
+import orderSchema from "./order";
+import adminAuthSchema from "./adminAuth";
 
-export default [productSchema, errorReportSchema];
+export default [productSchema, errorReportSchema, productTypeSchema, orderSchema, adminAuthSchema];

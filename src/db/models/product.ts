@@ -3,13 +3,17 @@ import { Schema, model } from "mongoose";
 const productSchema = new Schema({
   productName: String,
   price: Number,
-  types: {
-    type: [String],
-    default: [],
-  },
   images: {
     type: [String],
     default: [],
+  },
+  typesID: {
+    type: [String],
+    default: [],
+  },
+  imageAlignment: {
+    type: String,
+    enum: ["top", "center", "bottom"],
   },
 });
 
