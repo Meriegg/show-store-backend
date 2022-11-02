@@ -1,4 +1,5 @@
 import Order from "../../db/models/order";
+import { censorString } from "../../utils/censorString";
 import { ApolloError } from "apollo-server-express";
 
 interface CreateOrderProps {
@@ -6,7 +7,7 @@ interface CreateOrderProps {
   lastName: string;
   country: string;
   email: string;
-  phoneNum: String;
+  phoneNum: string;
   state: string;
   homeAddress: string;
   stringifiedOrder: string;
@@ -34,9 +35,19 @@ export default {
   },
   Mutation: {
     createOrder: async (_: any, { args }: { args: CreateOrderProps }) => {
-      console.log(args);
-      const newOrder = await new Order({ ...args, createdAt: Date.now() }).save();
-      console.log(newOrder);
+      const safeArgs: typeof args = {
+        country: censorString(args.country, 3),
+        createdAt: Date.now().toString(),
+        email: censorString(args.email, 4),
+        firstName: args.firstName,
+        lastName: censorString(args.lastName, 2),
+        homeAddress: censorString(args.homeAddress, 4),
+        phoneNum: censorString(args.phoneNum, 3),
+        state: censorString(args.state, 2),
+        stringifiedOrder: args.stringifiedOrder,
+      };
+
+      const newOrder = await new Order({ ...safeArgs }).save();
 
       return newOrder;
     },
