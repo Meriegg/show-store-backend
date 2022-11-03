@@ -9,7 +9,7 @@ const orderSchema = new Schema({
   state: String,
   homeAddress: String,
   stringifiedOrder: String,
-  createdAt: String,
+  createdAt: Date,
 });
 
 export default model("Order", orderSchema);

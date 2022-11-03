@@ -17,6 +17,14 @@ interface CreateOrderProps {
 export default {
   Query: {
     getAllOrders: async () => {
+      const prevDate = new Date();
+      prevDate.setDate(prevDate.getDate() - 2);
+      await Order.deleteMany({
+        createdAt: {
+          $lt: prevDate,
+        },
+      });
+
       const orders = await Order.find();
       if (!orders) {
         throw new ApolloError("Could not get any orders!");
