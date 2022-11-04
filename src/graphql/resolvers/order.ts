@@ -12,6 +12,7 @@ interface CreateOrderProps {
   homeAddress: string;
   stringifiedOrder: string;
   createdAt: string;
+  cartTotal: number;
 }
 
 export default {
@@ -53,6 +54,7 @@ export default {
         phoneNum: censorString(args.phoneNum, 3),
         state: censorString(args.state, 2),
         stringifiedOrder: args.stringifiedOrder,
+        cartTotal: args.cartTotal,
       };
 
       const newOrder = await new Order({ ...safeArgs }).save();

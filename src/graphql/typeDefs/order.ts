@@ -11,6 +11,7 @@ export default gql`
     homeAddress: String!
     stringifiedOrder: String!
     createdAt: String!
+    cartTotal: Int!
     _id: ID!
   }
 
@@ -33,5 +34,6 @@ export default gql`
     state: String!
     homeAddress: String!
     stringifiedOrder: String!
+    cartTotal: Int!
   }
 `;

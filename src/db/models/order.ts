@@ -10,6 +10,7 @@ const orderSchema = new Schema({
   homeAddress: String,
   stringifiedOrder: String,
   createdAt: Date,
+  cartTotal: Number,
 });
 
 export default model("Order", orderSchema);
